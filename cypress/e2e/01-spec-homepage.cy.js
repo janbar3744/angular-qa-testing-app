@@ -5,15 +5,7 @@ describe('Homepage tests', () => {
   });
 
   it('Check if the URL is correct', () => {
-    const targetUrl = 'https://angular-qa-recruitment-app.netlify.app/';
-
-    cy.url().should('eq', targetUrl);
-
-    if (Cypress.config('baseUrl') !== targetUrl) {
-      cy.visit(targetUrl);
-    }
-
-    cy.url().should('eq', targetUrl);
+    cy.checkUrl('https://angular-qa-recruitment-app.netlify.app/')
   })
 
   it('Check if the application status is correct', () => {

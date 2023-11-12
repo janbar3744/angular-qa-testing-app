@@ -40,3 +40,14 @@ Cypress.Commands.add('terminalValidation', (nextStepInput, nextStepOutput) => {
       .should('have.attr', 'target', '_blank')
       .click();
   });
+
+  Cypress.Commands.add('checkUrl', (targetTestUrl) => {
+
+    cy.url().should('eq', targetTestUrl);
+
+    if (Cypress.config('baseUrl') !== targetTestUrl) {
+      cy.visit(targetTestUrl);
+    }
+
+    cy.url().should('eq', targetTestUrl);
+  });
