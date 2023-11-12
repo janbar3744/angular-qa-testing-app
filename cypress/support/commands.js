@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('terminalValidation', (nextStepInput, nextStepOutput) => {
+    cy.get('.card-container')
+      .should('contain', nextStepInput)
+      .contains(nextStepInput)
+      .click();
+  
+    cy.get('.terminal')
+      .should('have.text', nextStepOutput);
+  });
+
+  Cypress.Commands.add('newTabValidation', (newTabElement) => {
+    cy.get(newTabElement)
+      .should('be.visible')
+      .should('have.attr', 'target', '_blank')
+      .click();
+  });

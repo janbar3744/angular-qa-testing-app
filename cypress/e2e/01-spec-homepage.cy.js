@@ -2,39 +2,38 @@ describe('Homepage tests', () => {
 
   beforeEach(() => {
     cy.visit('https://angular-qa-recruitment-app.netlify.app/');
+
     const invalidUrl = 'https://angular-qa-recruitment-app.netlify.app/wrong-url';
     cy.visit(invalidUrl, { failOnStatusCode: false });
-    cy.url().should('eq', 'https://angular-qa-recruitment-app.netlify.app/');
+
+    cy.url()
+      .should('eq', 'https://angular-qa-recruitment-app.netlify.app/');
   });
 
-  it('Check if app is running', () => {
+  it('Check if the application status is correct', () => {
     cy.get('.highlight-card > span')
       .contains('Recruitment app is running!')
       .should('be.visible');
   })
 
-  it('Check if social media elements are visible', () => {
-    cy.get('[aria-label="Angular on twitter"]')
-      .should('be.visible');
-    cy.get('[aria-label="Angular on YouTube"]')
-      .should('be.visible');
+  it('Check if "Social Media" elements open in a new tab', () => {
+    cy.newTabValidation('[aria-label="Angular on YouTube"]');
+    cy.newTabValidation('[aria-label="Angular on twitter"]');
   })
 
-  it.only('Check if Resources elements are visible', () => {
-    cy.get('.card-container:nth-child(1)')
-      .should('have.length.greaterThan', 0)
-      .each(($card) => {
-        const href = $card.attr('href');
-
-        if (href === 'https://angular.io/tutorial' || href === 'https://angular.io/cli' || href === 'https://blog.angular.io/' || href === 'https://angular.io/devtools/') {
-          cy.wrap($card).should('be.visible');
-        }
-
-      })
+  it('Check if "Resources" elements open in a new tab', () => {
+    cy.newTabValidation('a[href="https://angular.io/tutorial"]');
+    cy.newTabValidation('a[href="https://angular.io/cli"]');
+    cy.newTabValidation('a[href="https://blog.angular.io/"]');
+    cy.newTabValidation('a[href="https://angular.io/devtools/"]');
   })
 
-  it('debuge', () => {
-    cy.get('.card-container(1)')
-      .should('be.visible');
+  it('Check if "Next Steps" elements display the correct values in the terminal', () => {
+    cy.terminalValidation('New Component', 'ng generate component xyz');
+    cy.terminalValidation('Angular Material', 'ng add @angular/material');
+    cy.terminalValidation('Add PWA Support', 'ng add @angular/pwa');
+    cy.terminalValidation('Add Dependency', 'ng add _____');
+    cy.terminalValidation('Run and Watch Tests', 'ng test');
+    cy.terminalValidation('Build for Production', 'ng build');
   })
 })
