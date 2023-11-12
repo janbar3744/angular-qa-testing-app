@@ -2,7 +2,8 @@
 
 # Angular QA Recrutiment App E2E Tests 
 
-Brief description or introduction of the project.
+E2E test for "Angular QA Recrutiment App".
+Tests include landing page, form page and stepper
 
 ## Table of Contents
 
