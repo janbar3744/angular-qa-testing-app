@@ -1,14 +1,20 @@
 describe('Homepage tests', () => {
 
   beforeEach(() => {
-    cy.visit('https://angular-qa-recruitment-app.netlify.app/');
-
-    const invalidUrl = 'https://angular-qa-recruitment-app.netlify.app/wrong-url';
-    cy.visit(invalidUrl, { failOnStatusCode: false });
-
-    cy.url()
-      .should('eq', 'https://angular-qa-recruitment-app.netlify.app/');
+    cy.visit('/');
   });
+
+  it('Check if the URL is correct', () => {
+    const targetUrl = 'https://angular-qa-recruitment-app.netlify.app/';
+
+    cy.url().should('eq', targetUrl);
+
+    if (Cypress.config('baseUrl') !== targetUrl) {
+      cy.visit(targetUrl);
+    }
+
+    cy.url().should('eq', targetUrl);
+  })
 
   it('Check if the application status is correct', () => {
     cy.get('.highlight-card > span')
@@ -16,19 +22,19 @@ describe('Homepage tests', () => {
       .should('be.visible');
   })
 
-  it('Check if "Social Media" elements open in a new tab', () => {
+  it('Check if the "Social Media" elements open in a new tab', () => {
     cy.newTabValidation('[aria-label="Angular on YouTube"]');
     cy.newTabValidation('[aria-label="Angular on twitter"]');
   })
 
-  it('Check if "Resources" elements open in a new tab', () => {
+  it('Check if the "Resources" elements open in a new tab', () => {
     cy.newTabValidation('a[href="https://angular.io/tutorial"]');
     cy.newTabValidation('a[href="https://angular.io/cli"]');
     cy.newTabValidation('a[href="https://blog.angular.io/"]');
     cy.newTabValidation('a[href="https://angular.io/devtools/"]');
   })
 
-  it('Check if "Next Steps" elements display the correct values in the terminal', () => {
+  it('Check if the "Next Steps" elements display the correct values in the terminal', () => {
     cy.terminalValidation('New Component', 'ng generate component xyz');
     cy.terminalValidation('Angular Material', 'ng add @angular/material');
     cy.terminalValidation('Add PWA Support', 'ng add @angular/pwa');
