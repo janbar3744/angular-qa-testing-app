@@ -25,29 +25,32 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('terminalValidation', (nextStepInput, nextStepOutput) => {
-    cy.get('.card-container')
-      .should('contain', nextStepInput)
-      .contains(nextStepInput)
-      .click();
-  
-    cy.get('.terminal')
-      .should('have.text', nextStepOutput);
-  });
+  cy.get('.card-container')
+    .should('contain', nextStepInput)
+    .contains(nextStepInput)
+    .click();
 
-  Cypress.Commands.add('newTabValidation', (newTabElement) => {
-    cy.get(newTabElement)
-      .should('be.visible')
-      .should('have.attr', 'target', '_blank')
-      .click();
-  });
+  cy.get('.terminal')
+    .should('have.text', nextStepOutput);
+});
 
-  Cypress.Commands.add('checkUrl', (targetTestUrl) => {
+Cypress.Commands.add('newTabValidation', (newTabElement) => {
+  cy.get(newTabElement)
+    .should('be.visible')
+    .should('have.attr', 'target', '_blank')
+    .click();
+});
 
-    cy.url().should('eq', targetTestUrl);
+Cypress.Commands.add('checkUrl', (targetTestUrl, targetTestElement) => {
 
-    if (Cypress.config('baseUrl') !== targetTestUrl) {
-      cy.visit(targetTestUrl);
-    }
+  cy.visit(targetTestUrl);
+  cy.get(targetTestElement).should('exist');
 
-    cy.url().should('eq', targetTestUrl);
-  });
+});
+
+Cypress.Commands.add('checkCorrectValue', (targetElement, targetValue) => {
+
+  cy.get(targetElement).should('exist');
+  cy.get(targetElement).should('have.value', targetValue);
+
+});

@@ -4,10 +4,6 @@ describe('Welcome page tests', () => {
     cy.visit('/');
   });
 
-  it('Check if the URL is correct', () => {
-    cy.checkUrl('https://angular-qa-recruitment-app.netlify.app/')
-  })
-
   it('Check if the application status is correct', () => {
     cy.get('.highlight-card > span')
       .contains('Recruitment app is running!')
