@@ -34,4 +34,6 @@ describe('First stepper page tests', () => {
         cy.contains('This field is required').should('be.visible');
     })
 
+    
+
 })

@@ -14,6 +14,7 @@ describe('"Name" field tests', () => {
         cy.get('#name + .alert.alert-danger').should('have.text', ' Name is required ');
     });
 
+    // Referring to the requirements, the application should trim the contents of text fields, so such a field will be empty
     it('Check if validation appears when a field is filled only with a space', () => {
         cy.get('#name').clear();
         cy.get('#name').type(' ');
