@@ -2,6 +2,7 @@ describe('Welcome page tests', () => {
 
   beforeEach(() => {
     cy.visit('/');
+    cy.get('#Ellipse_8').should('be.visible');
   });
 
   it('Check if the application status is correct', () => {

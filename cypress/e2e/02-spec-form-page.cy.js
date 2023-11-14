@@ -2,6 +2,7 @@ describe('"Name" field tests', () => {
 
     beforeEach(() => {
         cy.visit('/form');
+        cy.contains('You submitted the following:').should('be.not.visible');
     });
 
     it('Check if the value is filled with an example text', () => {
