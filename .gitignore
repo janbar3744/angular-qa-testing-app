@@ -1,2 +1,7 @@
-cypress/downloads/*
+# Downloads
+cypress/downloads/
+downloads/
+
+# Temporary files and logs
 *.log
+*.tmp
