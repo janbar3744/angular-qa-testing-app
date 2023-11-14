@@ -13,8 +13,8 @@ Tests include landing page, form page and stepper
 
 ## Prerequisites
 
-- Node.js 14.15 or 16.10
-- npm 6.14.5 or 8.13.2
+- Node.js 
+- npm
 - Cypress
 
 ## Installation
