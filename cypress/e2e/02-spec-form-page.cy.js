@@ -57,7 +57,6 @@ describe('"Hero Power" field tests', () => {
     });
 
     it('Check that the selected option from the list is correctly displayed', () => {
-
         cy.get('select#power').select('Super Flexible');
         cy.get('select#power option:selected').should('have.value', 'Super Flexible');
 
@@ -69,7 +68,6 @@ describe('"Hero Power" field tests', () => {
 
         cy.get('select#power').select('Weather Changer');
         cy.get('select#power option:selected').should('have.value', 'Weather Changer');
-
     })
 })
 
@@ -105,7 +103,6 @@ describe('"Submit" options test', () => {
     });
 
     it('Check the summary and edit', () => {
-
         cy.get('button[type="button"].btn.btn-default').click();
 
         cy.get('#name').type('testName');
@@ -125,6 +122,5 @@ describe('"Submit" options test', () => {
         cy.checkCorrectValue('#name', 'testName');
         cy.checkCorrectValue('#alterEgo', 'testAlterEgo');
         cy.checkCorrectValue('#power', 'Super Hot');
-
     });
 });

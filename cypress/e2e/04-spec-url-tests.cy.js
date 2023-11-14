@@ -1,7 +1,6 @@
 describe('URL tests', () => {
 
     it('Verify that specifying an invalid URL returns you to the homepage', () => {
-
         const invalidURLs = [
             'https://angular-qa-recruitment-app.netlify.app/random-url-1',
             'https://angular-qa-recruitment-app.netlify.app/random-url-2',
