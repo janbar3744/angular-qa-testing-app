@@ -18,21 +18,21 @@ describe('"Name" field tests', () => {
     it('Check if validation appears when a field is filled only with a space', () => {
         cy.get('#name').clear();
         cy.get('#name').type(' ');
-        cy.get('#name-validation-message').should('have.text', 'Name is required');
+        cy.get('#name-validation-message').should('have.text', ' Name is required ');
     });
 
     // Referring to the requirements, there should be validation for special characters
     it('Check if validation appears when field is filled with special characters', () => {
         cy.get('#name').clear();
         cy.get('#name').type('!@#$%^&*()');
-        cy.get('#name-validation-message').should('have.text', 'Name is required');
+        cy.get('#name-validation-message').should('have.text', ' Name is required ');
     });
 
     // Referring to the requirements, there should be validation for the number of characters (I chose 65 characters for the example)
     it('Check if validation appears when a field is filled with too many characters', () => {
         cy.get('#name').clear();
         cy.get('#name').type('asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf');
-        cy.get('#name-validation-message').should('have.text', 'Name is required');
+        cy.get('#name-validation-message').should('have.text', ' Name is required ');
     });
 });
 
